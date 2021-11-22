@@ -1,0 +1,90 @@
+{{>layout/header}}
+<style>
+    .signup_common_1 {
+        height: 10%;
+        width: 100%;
+    }
+    .contents_box {
+        width: 300px;
+        height: 270px;
+    }
+</style>
+
+<div id="signup_wrap" class="common_wrap">
+    <div class="contents_box contents_center">
+
+        <div class="signup_common_1" style="text-align: center;">
+            <span style="font-size: 1.3rem;font-weight: bold;">회원가입</span>
+        </div>
+
+        <div class="signup_common_1 input-group input-group-sm mb-3 index_height_1" style="margin-top: 7px;">
+            <span class="input-group-text">아이디</span>
+            <input id="userId" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <button class="btn btn-outline-secondary" type="button" onclick="index_duplicate_check()" >중복확인</button>
+        </div>
+
+        <div class="signup_common_1 input-group input-group-sm mb-3 index_height_1">
+            <span class="input-group-text">이름</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="signup_common_1 input-group input-group-sm mb-3 index_height_1">
+            <span class="input-group-text">비밀번호</span>
+            <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="signup_common_1 input-group input-group-sm mb-3 index_height_1">
+            <span class="input-group-text">비밀번호 확인</span>
+            <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="signup_common_1 index_triple_height index_height_1" style="text-align: center">
+            <div style="display: inline-block;">
+                <button onclick="moveHome()" type="button" class="btn btn-danger">취소</button>
+            </div>
+            <div style="display: inline-block;">
+                <button type="button" class="btn btn-success">가입</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- script 시작 -->
+<script type="text/javascript">
+
+    // 아이디 중복 체크(기능)
+    function index_duplicate_check() {
+
+        let userId = document.getElementById("userId").value;
+        let obj = {};
+        obj["userid"] = userId;
+
+        $.ajax({
+            type : "POST",
+            contentType : "application/json",
+            url : "/welcome/check",
+            data : JSON.stringify(obj),
+            dataType : "json",
+            cache : false,
+            timeout : 600000,
+            success : function (data) {
+                console.log("succ2 : ", data);
+            },
+            error : function (e) {
+                console.log("failed : ", e);
+            }
+        });
+
+    } // 아이디 중복 체크 종료
+
+
+    // 회원가입 페이지 이동(페이지 이동)
+    function moveHome() {
+        window.location.href = "/";
+    } // 회원가입 페이지 이동 종료
+
+
+</script> <!-- script 끝 -->
+
+{{>layout/footer}}

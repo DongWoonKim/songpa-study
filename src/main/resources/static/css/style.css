@@ -1,0 +1,33 @@
+
+/* CSS 노멀라이징 시작 */
+html, body {
+    width: 100%;
+    height: 100%;
+}
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+
+a {
+    color: inherit;
+    text-decoration : none;
+}
+/* CSS 노멀라이징 끝 */
+
+.common_wrap {
+    width: 100%;
+    height: 100%;
+    position : relative;
+}
+
+.contents_center {
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 3px 3px 3px 3px rgba(86, 86, 86, .4);
+    padding: 10px;
+    box-sizing: border-box;
+}
