@@ -1,6 +1,7 @@
 
  {{>layout/header}}
- <style>
+
+ <style> <!-- CSS 시작 -->
      .index_height_1 {
          height: 40px;
      }
@@ -9,7 +10,7 @@
          width: 300px;
          height: 230px;
      }
- </style>
+ </style> <!-- CSS 끝 -->
 
  <div id="index_wrap" class="common_wrap"> <!-- index_wrap 시작 -->
     <div class="contents_box contents_center"> <!-- contents_box 시작 -->
@@ -25,15 +26,15 @@
 
         <div class="input-group mb-3 index_height_1">
             <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
-            <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <input id="userPw" type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
 
         <div class="index_triple_height index_height_1" style="text-align: center">
             <div style="display: inline-block;">
-                <button onclick="moveSignUp()" type="button" class="btn btn-primary">회원가입</button>
+                <button onclick="movePage('/signup')" type="button" class="btn btn-primary">회원가입</button>
             </div>
             <div style="display: inline-block;">
-                <button type="button" class="btn btn-success">로그인</button>
+                <button onclick="login()" type="button" class="btn btn-success">로그인</button>
             </div>
         </div>
 
@@ -43,37 +44,38 @@
  <!-- script 시작 -->
  <script type="text/javascript">
 
-     // 아이디 중복 체크(기능)
-     function index_duplicate_check() {
+     // 로그인 (기능)
+     function login() {
 
-        let userId = document.getElementById("userId").value;
-        let obj = {};
-        obj["userid"] = userId;
+         // 1. 공백 필터링
+         let userId = document.getElementById("userId").value;
+         let userPw = document.getElementById("userPw").value;
 
-        $.ajax({
-            type : "POST",
-            contentType : "application/json",
-            url : "/welcome/check",
-            data : JSON.stringify(obj),
-            dataType : "json",
-            cache : false,
-            timeout : 600000,
-            success : function (data) {
-                console.log("succ2 : ", data);
-            },
-            error : function (e) {
-                console.log("failed : ", e);
-            }
-        });
+         console.log("abc : ", userId, userPw);
 
-     } // 아이디 중복 체크 종료
+         // 2. api요청
+         let obj = {};
+         obj["userid"]   = userId;
+         obj["userpw"]   = userPw;
 
+         $.ajax({
+             type : "POST",
+             contentType : "application/json",
+             url : "/login-info/v1/login",
+             data : JSON.stringify(obj),
+             dataType : "json",
+             cache : false,
+             timeout : 600000,
+             success : function (data) {
+                 console.log("login - succ2 : ", data);
+                 movePage("/board/main");
+             },
+             error : function (e) {
+                 console.log("login - failed : ", e);
+             }
+         });
 
-     // 회원가입 페이지 이동(페이지 이동)
-     function moveSignUp() {
-        window.location.href = "/signup";
-     } // 회원가입 페이지 이동 종료
-
+     } // 로그인 종료
 
  </script> <!-- script 끝 -->
  {{>layout/footer}}
