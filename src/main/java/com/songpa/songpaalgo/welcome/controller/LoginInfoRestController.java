@@ -45,10 +45,6 @@ public class LoginInfoRestController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginInfoDto> login(@RequestBody LoginInfoDto loginInfoDto) {
-
-        System.out.println(loginInfoDto.getUserid());
-        System.out.println(loginInfoDto.getUserpw());
-
         return ResponseEntity.ok(loginInfoService.login(loginInfoDto));
     }
 

@@ -31,7 +31,6 @@ public class LoginInfoRepositoryTest {
         String userid   = "1234";
         String username = "홍길동";
         String userpw   = "1234";
-        String usermail = "1234";
 
         loginInfoRepository.save(
                 LoginInfo.builder()
