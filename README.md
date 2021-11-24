@@ -25,7 +25,7 @@
 
 ➡️ 현재 구조에서 크게 "인증/인가" 기능을 하는 welcome패키지와 board패키지가 존재합니다.
 
-➡️ 특이한점은 각각 controller, service, domain, repository, dto를 가진다. 이렇게 구조를 잡은 이유는 2단계에서 우리의 서비스를 msa로의 진행시 분할하기 쉽게하기 위함이다. 즉, welcome과 board는 각각 개별 서비스 인스턴스가 될것입니다.
+➡️ 특이한점은 각각 controller, service, domain, repository, dto를 가진다. 이렇게 구조를 잡은 이유는 2단계에서 우리의 서비스를 msa로의 진행시 분할하기 쉽게하기 위함입니다. 즉, welcome과 board는 각각 개별 서비스 인스턴스가 될것입니다.
 
 ➡️ 또 컨트롤러안을 보면 현재 프론트엔드가 Single Page Application(SPA)구조가 적용되지 않아 페이지 이동이 필요하게되어 단순 페이지 이동을 담당하는 일반 컨트롤러인 WelcomeController와 로그인, 회원가입 등 기능적인 부분의 요청을 담당하는 'Rest' 키워드가 들어간 LoginRestController가 존재한다. 'Rest' 키워드가 들어간 컨트롤러는 기능 요청을 처리하고, 그냥 Controller는 페이지 이동을 처리합니다.
 
